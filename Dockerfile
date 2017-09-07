@@ -134,9 +134,7 @@ RUN mkdir -p /root/.aws
 COPY .aws/* /root/.aws/
 
 # php.ini
-ARG PHP_MEMORY
 COPY php.ini /usr/local/etc/php/conf.d/
-RUN sed -i -e "s/{PHP_MEMORY}/$PHP_MEMORY/" /usr/local/etc/php/conf.d/php.ini
 
 # user追加
 RUN usermod -u 1000 www-data

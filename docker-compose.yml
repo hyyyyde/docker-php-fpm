@@ -5,6 +5,5 @@ services:
     build:
       context: .
       args:
-        - PHP_MEMORY=$PHP_MEMORY
         - PHPREDIS_VERSION=$PHPREDIS_VERSION
     image: hyyyyde/php-fpm:1.0.0
