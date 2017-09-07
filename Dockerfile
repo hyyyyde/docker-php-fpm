@@ -1,6 +1,6 @@
 FROM php:7.1.8-fpm
 
-LABEL mantainer "hyyyyde <hyyyyde@gmail.com>"
+LABEL mantainer "hyyyyde"
 
 # core library
 RUN apt-get update -y \
@@ -124,10 +124,6 @@ RUN curl -fsSL 'https://bootstrap.pypa.io/get-pip.py' -o get-pip.py \
     && rm -f get-pip.py \
     && echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
 
-# php session
-RUN echo "php_admin_value[session.save_handler] = redis" >> /usr/local/etc/php-fpm.d/www.conf \
-    && echo "php_admin_value[session.save_path] = tcp://local_redis:6379" >> /usr/local/etc/php-fpm.d/www.conf
-
 # composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
@@ -144,3 +140,10 @@ RUN sed -i -e "s/{PHP_MEMORY}/$PHP_MEMORY/" /usr/local/etc/php/conf.d/php.ini
 
 # user追加
 RUN usermod -u 1000 www-data
+
+# php-fpmソケット
+RUN mkdir /var/run/php-fpm \
+    && chown www-data:www-data /var/run/php-fpm
+
+# php conf
+COPY www.conf /usr/local/etc/php-fpm.d/zz-www.conf
