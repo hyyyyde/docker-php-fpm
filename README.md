@@ -44,7 +44,7 @@ sh docker-compose.sh down
 
 ## 本コンテナのphp設定を変更する場合
 
-```
+```docker-compose.yml
 version: '2'
 services:
   php:
@@ -59,7 +59,7 @@ services:
 
 ### listenを変更する際の注意点
 
-www.confを以下のようにマウントしてください
+`www.conf` を以下のようにマウントしてください
 
 ```
 volumes:
