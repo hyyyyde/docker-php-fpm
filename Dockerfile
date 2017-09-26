@@ -69,35 +69,6 @@ RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     pgsql \
     xsl
 
-# phing
-RUN pear channel-discover pear.phing.info \
-    && pear channel-discover pear.pdepend.org \
-    && pear channel-discover pear.phpmd.org \
-    && pear channel-discover components.ez.no \
-    && pear channel-discover pear.symfony-project.com \
-    && pear install phing/phing \
-    && pear install phpmd/PHP_PMD
-
-# phpcpd, phpcs, phpdox, pdpend, phploc, phpunit
-RUN curl -OL https://phar.phpunit.de/phpcpd.phar \
-    && chmod +x phpcpd.phar \
-    && mv phpcpd.phar /usr/local/bin/phpcpd \
-    && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
-    && chmod +x phpcs.phar \
-    && mv phpcs.phar /usr/local/bin/phpcs \
-    && curl -OL https://github.com/theseer/phpdox/releases/download/0.9.0/phpdox-0.9.0.phar \
-    && chmod +x phpdox-0.9.0.phar \
-    && mv phpdox-0.9.0.phar /usr/local/bin/phpdox \
-    && curl -OL http://static.pdepend.org/php/latest/pdepend.phar \
-    && chmod +x pdepend.phar \
-    && mv pdepend.phar /usr/local/bin/pdepend \
-    && curl -OL https://phar.phpunit.de/phploc.phar \
-    && chmod +x phploc.phar \
-    && mv phploc.phar /usr/local/bin/phploc \
-    && curl -OL https://phar.phpunit.de/phpunit.phar \
-    && chmod +x phpunit.phar \
-    && mv phpunit.phar /usr/local/bin/phpunit
-
 # php-mecab
 RUN git clone https://github.com/rsky/php-mecab.git \
     && cd php-mecab/mecab \
