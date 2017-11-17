@@ -1,6 +1,6 @@
 FROM php:7.1.8-fpm
 
-LABEL mantainer "hyyyyde"
+LABEL maintainer "hyyyyde"
 
 # core library
 RUN apt-get update -y \
